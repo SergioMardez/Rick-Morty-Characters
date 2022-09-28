@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/characterSearchFragment">
+
+    <fragment
+        android:id="@+id/characterSearchFragment"
+        android:name="com.sergiom.rickmortycharacters.ui.charactersearchview.CharacterSearchFragment"
+        android:label="fragment_character_search"
+        tools:layout="@layout/fragment_character_search" >
+
+        <action
+            android:id="@+id/action_characterSearchFragment_to_characterDetailFragment"
+            app:destination="@id/characterDetailFragment" />
+
+        <action
+            android:id="@+id/action_characterSearchFragment_to_charactersDBFragment"
+            app:destination="@id/charactersDBFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/charactersDBFragment"
+        android:name="com.sergiom.rickmortycharacters.ui.charactersdbview.CharactersDBFragment"
+        android:label="fragment_characters_d_b"
+        tools:layout="@layout/fragment_characters_d_b" >
+
+        <action
+            android:id="@+id/action_charactersDBFragment_to_characterDetailFragment"
+            app:destination="@id/characterDetailFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/characterDetailFragment"
+        android:name="com.sergiom.rickmortycharacters.ui.characterdetailview.CharacterDetailFragment"
+        android:label="fragment_character_detail"
+        tools:layout="@layout/fragment_character_detail" >
+
+        <argument
+            android:name="characterId"
+            app:argType="integer"
+            android:defaultValue="0"
+            />
+
+    </fragment>
+
+</navigation>

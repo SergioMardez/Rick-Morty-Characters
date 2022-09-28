@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable/border_shape_green.xml" value="0.229" />
+        <entry key="app/src/main/res/drawable/border_shape_white.xml" value="0.229" />
+        <entry key="app/src/main/res/drawable/border_shape_white_rectangular.xml" value="0.229" />
+        <entry key="app/src/main/res/drawable/border_shape_white_slim.xml" value="0.229" />
+        <entry key="app/src/main/res/drawable/ic_baseline_arrow_back.xml" value="0.229" />
+        <entry key="app/src/main/res/drawable/ic_baseline_circle_alive.xml" value="0.229" />
+        <entry key="app/src/main/res/drawable/ic_baseline_circle_dead.xml" value="0.1925" />
+        <entry key="app/src/main/res/drawable/ic_baseline_delete.xml" value="0.229" />
+        <entry key="app/src/main/res/drawable/ic_baseline_manage_search.xml" value="0.1925" />
+        <entry key="app/src/main/res/drawable/ic_placeholder.xml" value="0.229" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/character_recycler_layout.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/layout/detail_view.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/layout/fragment_character_detail.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/layout/fragment_character_search.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_characters_d_b.xml" value="0.3619791666666667" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
