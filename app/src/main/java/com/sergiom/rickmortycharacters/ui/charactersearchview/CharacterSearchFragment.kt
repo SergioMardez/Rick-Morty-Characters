@@ -13,6 +13,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sergiom.data.models.CharacterModel
 import com.sergiom.rickmortycharacters.R
@@ -34,6 +35,8 @@ class CharacterSearchFragment : Fragment(), CharacterAdapter.ItemClickListener {
     private var binding: FragmentCharacterSearchBinding by autoCleared()
     private val viewModel: CharacterSearchViewModel by viewModels()
     private lateinit var adapter: CharacterAdapter
+    private val dbCharacters = "dbCharacters"
+    private val characterDetail = "characterDetail"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,7 +53,7 @@ class CharacterSearchFragment : Fragment(), CharacterAdapter.ItemClickListener {
         setSearchView()
         setupRecyclerView()
         binding.goToCharactersDb.setOnClickListener {
-            goToFragment("dbCharacters")
+            goToFragment(dbCharacters)
         }
     }
 
@@ -75,6 +78,16 @@ class CharacterSearchFragment : Fragment(), CharacterAdapter.ItemClickListener {
             viewModel.getNextPage(query).collectLatest {
                 adapter.submitData(it)
                 binding.charactersRecyclerView.scrollToPosition(0)
+            }
+            adapter.loadStateFlow.collectLatest { loadState ->
+                when (val currentState = loadState.refresh) {
+                    is LoadState.Error -> {
+                        viewModel.setError(currentState.error.message.toString())
+                    }
+                    else -> {
+                        //Do nothing
+                    }
+                }
             }
         }
     }
@@ -126,13 +139,13 @@ class CharacterSearchFragment : Fragment(), CharacterAdapter.ItemClickListener {
 
     override fun onItemClicked(item: CharacterModel) {
         viewModel.saveCharacter(item)
-        goToFragment("characterDetail", item.id)
+        goToFragment(characterDetail, item.id)
     }
 
     private fun goToFragment(name: String, itemId: Int = 0) {
         val navController = findNavController()
         viewModel.query = binding.searchView.query.toString()
-        if (name == "characterDetail") {
+        if (name == characterDetail) {
             navController.navigate(CharacterSearchFragmentDirections.actionCharacterSearchFragmentToCharacterDetailFragment(characterId = itemId))
         } else {
             navController.navigate(CharacterSearchFragmentDirections.actionCharacterSearchFragmentToCharactersDBFragment())

@@ -34,9 +34,7 @@ class CharacterSearchViewModel @Inject constructor(
     init {
         Handler(Looper.getMainLooper()).postDelayed({
             _state.update {
-                it.copy(
-                    loading = false
-                )
+                it.copy(loading = false)
             }
         }, 1000) //To see logo image like a splash
     }
@@ -47,12 +45,17 @@ class CharacterSearchViewModel @Inject constructor(
         }
     }
 
-    suspend fun getNextPage(query: String): Flow<PagingData<CharacterModel>> {
-        return getPaginationCharactersUseCase.invoke(query).map { pagingData ->
+    suspend fun getNextPage(query: String): Flow<PagingData<CharacterModel>> =
+        getPaginationCharactersUseCase.invoke(query).map { pagingData ->
             pagingData.map {
                 it
             }
         }.cachedIn(viewModelScope)
+
+    fun setError(error: String) {
+        _state.update {
+            it.copy(error = error)
+        }
     }
 
     data class State(
